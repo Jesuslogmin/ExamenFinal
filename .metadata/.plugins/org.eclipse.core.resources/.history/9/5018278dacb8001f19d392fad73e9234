@@ -1,0 +1,32 @@
+package com.barturen.converter;
+
+import org.springframework.stereotype.Component;
+
+import com.barturen.dto.MascotaDto;
+import com.barturen.entity.Mascota;
+
+@Component
+public class MascotaConverter extends AbstractConverter<Mascota, MascotaDto> {
+
+    @Override
+    public MascotaDto fromEntity(Mascota entity) {
+        if (entity == null) return null;
+        return MascotaDto.builder()
+                .id(entity.getId())
+                .nombre(entity.getNombre())
+                .raza(entity.getRaza())
+                .fNacimiento(entity.getFechaNacimiento())
+                .build();
+    }
+
+    @Override
+    public Mascota fromDTO(MascotaDto dto) {
+        if (dto == null) return null;
+        return Mascota.builder()
+                .id(dto.getId())
+                .nombre(dto.getNombre())
+                .raza(dto.getRaza())
+                .fechaNacimiento(dto.getFNacimiento())
+                .build();
+    }
+}
